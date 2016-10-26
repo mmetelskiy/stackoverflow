@@ -48,26 +48,35 @@ var ajax = function (options, callback) {
 
 var render = (function () {
     var render = {
-        questions: _.template(document.getElementById('questions-template').innerHTML)
+        questions: _.template(document.getElementById('questions-template').innerHTML),
+        question: _.template(document.getElementById('question-template').innerHTML)
     };
 
     return function (view, options) {
-        return render[view](options);
+        return document
+            .createRange()
+            .createContextualFragment(render[view](options));
     };
 })();
 
 var switchView = (function () {
     var currentView = null;
 
-    return function (view) {
+    return function (element) {
         if (currentView) {
             currentView.classList.remove('current-view');
         }
 
-        currentView = document.getElementById(view);
+        currentView = element;
         currentView.classList.add('current-view');
     };
 })();
+
+var clearElement = function (element) {
+    while (element.lastChild) {
+        element.removeChild(element.lastChild);
+    }
+}
 
 var showQuestions = (function () {
     var options = {
@@ -83,7 +92,7 @@ var showQuestions = (function () {
             };
         }
 
-//        ajax(options, function (questions) {
+//        ajax(options, function (questionsList) {
             let questionsList = [
                 {
                     id: 1,
@@ -123,19 +132,15 @@ var showQuestions = (function () {
                 questions: questionsList
             });
 
-            while (questions.lastChild) {
-                questions.removeChild(questions.lastChild);
-            }
-            questions.appendChild(document
-                .createRange()
-                .createContextualFragment(renderedQuestions));
+            clearElement(questions);
+            questions.appendChild(renderedQuestions);
 
             history.pushState({
                 name: 'questions',
             }, '', '/questions')
 
-            switchView('questions');
-//        })
+            switchView(questions);
+//        });
     };
 })();
 
@@ -143,20 +148,41 @@ var showLogin = function () {
 
 };
 
-var showQuestion = function (questionId) {
+var showQuestion = (function () {
+    var options = {
+        method: 'GET'
+    };
+    var basePath = '/list';
+    var questionDiv = document.getElementById('question');
 
-};
+    return function (questionId) {
+        // ajax(Object.assign({
+        //     path: basePath + '/' + encodeURI(questionId)
+        // }, options), function (question) {
+            let question = {
+                id: questionId
+            };
+            var renderedQuestion = render('question', {
+                question: question
+            });
+
+            clearElement(questionDiv);
+            questionDiv.appendChild(renderedQuestion);
+
+            history.pushState({
+                name: 'question'
+            }, '', questionId);
+
+            switchView(questionDiv);
+        // });
+    };
+})();
 
 var showNotFound = function () {
 
 };
 
-var setState = function (state) {
-
-};
-
-document.body.onload = function () {
-    // showQuestions();
+var setCurrentState = function () {
     var path = window.location.pathname;
 
     if (path === '/') {
@@ -170,4 +196,21 @@ document.body.onload = function () {
     } else {
         showNotFound();
     }
+};
+
+var initHandlers = function () {
+    document.getElementById('questions').addEventListener('click', function (event) {
+        if (event.target.tagName === 'H4') {
+            showQuestion(event.target.parentNode.id);
+        }
+    })
+};
+
+document.body.onload = function () {
+    setCurrentState();
+    initHandlers();
+};
+window.onpopstate = function (e) {
+    e.preventDefault();
+    setCurrentState();
 };
