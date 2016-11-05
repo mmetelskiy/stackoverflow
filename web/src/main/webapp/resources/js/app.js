@@ -83,7 +83,7 @@ var showQuestions = (function () {
             };
         }
 
-//        ajax(options, function (questions) {
+        //ajax(options, function (questions) {
             let questionsList = [
                 {
                     id: 1,

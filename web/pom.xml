@@ -5,7 +5,7 @@
   <artifactId>web</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>web Maven Webapp</name>
+  <name>webfrontend Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
   <parent>
@@ -18,6 +18,7 @@
     <javax.servlet>3.1.0</javax.servlet>
     <spring.version>4.3.1.RELEASE</spring.version>
     <apachetiles.version>3.0.5</apachetiles.version>
+    <javax.servlet.version>3.1.0</javax.servlet.version>
   </properties>
 
   <dependencies>
@@ -58,6 +59,51 @@
       <artifactId>gson</artifactId>
       <version>2.6.2</version>
     </dependency>
+
+    <!-- Apache Tiles -->
+    <dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-extras</artifactId>
+      <version>${apachetiles.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-core</artifactId>
+      <version>${apachetiles.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-api</artifactId>
+      <version>${apachetiles.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-servlet</artifactId>
+      <version>${apachetiles.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-jsp</artifactId>
+      <version>${apachetiles.version}</version>
+    </dependency>
+
+    <!-- Servlet+JSP+JSTL -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>${javax.servlet.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>javax.servlet.jsp-api</artifactId>
+      <version>2.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>web</finalName>

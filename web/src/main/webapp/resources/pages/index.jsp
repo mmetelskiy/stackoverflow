@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page session="true"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>StackOverflow</title>
-    <link rel="stylesheet" type="text/css" href="style/main.css">
+    <link rel="stylesheet" type="text/css" href="/resources/style/main.css">
 </head>
 <body>
     <header>
@@ -24,7 +26,7 @@
         </div>
     </footer>
     <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
-    <script id="questions-template" type="text/template">
+    <template id="questions-template" type="text/template">
         <ul>
             <% _.each(questions, function (question) { %>
                 <li id="<%= question.id %>" class="question">
@@ -37,7 +39,7 @@
                 </li>
             <% }) %>
         </ul>
-    </script>
-    <script type="text/javascript" src="js/app.js"></script>
+    </template>
+    <script type="text/javascript" src="/resources/js/app.js"></script>
 </body>
 </html>
