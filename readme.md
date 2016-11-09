@@ -1,28 +1,4 @@
-# nginx config
-    http {
-        server {
-            listen 8080;
-
-            root /media/Data/Универ/КБ/repository/web;
-            index index.html;
-
-            location / {
-                try_files $uri /index.html;
-            }
-
-            location = /index.html {
-                expires 30s;
-            }
-
-            location /rest-services {
-                proxy_pass http://localhost:8082/web;
-            }
-        }
-    }
-
-# api
-
-## rest-services
+# rest-services API
 
 ### GET /web/list
 #### 200 (application/json)
@@ -65,3 +41,25 @@ response: `{id:123}`
 #### 404 (application/json)
 #### 409 (application/json)
 #### 500 (application/json)
+
+# nginx config
+    http {
+        server {
+            listen 8080;
+
+            root /media/Data/Универ/КБ/repository/web;
+            index index.html;
+
+            location / {
+                try_files $uri /index.html;
+            }
+
+            location = /index.html {
+                expires 30s;
+            }
+
+            location /rest-services {
+                proxy_pass http://localhost:8082/web;
+            }
+        }
+    }
