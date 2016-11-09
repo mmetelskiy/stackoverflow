@@ -147,7 +147,27 @@ var showQuestions = (function () {
 var showLogin = function () {
 
 };
+/*
+    // GET /list/questionId
+        200 404
 
+    // PUT /rating/up
+        {
+            questionId: 'id'
+        }
+
+        response: 200 401 403 404 409
+
+    // PUT /rating/down
+        {
+            questionId: 'id'
+        }
+
+        response: 200 401 403 404 409
+
+    // DELETE /delete/questionId
+        response: 200 401 403 404 409
+*/
 var showQuestion = (function () {
     var options = {
         method: 'GET'
