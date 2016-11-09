@@ -25,40 +25,43 @@
 ## rest-services
 
 ### GET /web/list
-* 200
-* 500
+#### 200 (application/json)
+response: `[]`
+#### 500 (application/json)
 
 ### GET /web/list/questionId
-* 200
-* 404
-* 500
+#### 200 (application/json)
+response: `{}`
+#### 404 (application/json)
+#### 500 (application/json)
 
 ### POST /web/list
-* 201
-* 400
-* 401
-* 403
-* 500
+#### 201 (application/json)
+response: `{id:123}`
+#### 400 (application/json)
+#### 401 (application/json)
+#### 403 (application/json)
+#### 500 (application/json)
 
 ### DELETE /web/list/questionId
-* 200
-* 401
-* 403
-* 404
-* 500
+#### 200 (application/json)
+#### 401 (application/json)
+#### 403 (application/json)
+#### 404 (application/json)
+#### 500 (application/json)
 
 ### PUT /web/rating/up
-* 200
-* 401
-* 403
-* 404
-* 409
-* 500
+#### 200 (application/json)
+#### 401 (application/json)
+#### 403 (application/json)
+#### 404 (application/json)
+#### 409 (application/json)
+#### 500 (application/json)
 
 ### PUT /web/rating/down
-* 200
-* 401
-* 403
-* 404
-* 409
-* 500
+#### 200 (application/json)
+#### 401 (application/json)
+#### 403 (application/json)
+#### 404 (application/json)
+#### 409 (application/json)
+#### 500 (application/json)
