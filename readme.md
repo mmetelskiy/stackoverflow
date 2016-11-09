@@ -1,25 +1,24 @@
 # nginx config
-`http {
+    http {
+        server {
+            listen 8080;
 
-    server {
-        listen 8080;
+            root /media/Data/Универ/КБ/repository/web;
+            index index.html;
 
-        root /media/Data/Универ/КБ/repository/web;
-        index index.html;
+            location / {
+                try_files $uri /index.html;
+            }
 
-        location / {
-            try_files $uri /index.html;
-        }
+            location = /index.html {
+                expires 30s;
+            }
 
-        location = /index.html {
-            expires 30s;
-        }
-
-        location /rest-services {
-            proxy_pass http://localhost:8082/web;
+            location /rest-services {
+                proxy_pass http://localhost:8082/web;
+            }
         }
     }
-}`
 
 # api
 
