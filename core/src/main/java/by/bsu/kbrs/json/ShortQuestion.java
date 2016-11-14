@@ -9,17 +9,31 @@ public class ShortQuestion{
     private int questionId;
     private int numberOfAnswers;
     private int rating;
+    private int questionAuthorId;
     private String author;
     private String header;
 
     private Date publishDate;
 
+    public ShortQuestion(){
+        super();
+    }
 
-    public ShortQuestion(int questionId, int numberOfAnswers, int rating, String author, String header, Date publishDate) {
+    public ShortQuestion(int questionId, int numberOfAnswers, int rating, int questionAuthorId, String author, String header, Date publishDate) {
         this.header = header;
         this.questionId = questionId;
         this.numberOfAnswers = numberOfAnswers;
         this.rating = rating;
+        this.questionAuthorId = questionAuthorId;
+        this.author = author;
+        this.publishDate = publishDate;
+    }
+
+    public ShortQuestion(int numberOfAnswers, int rating, int questionAuthorId, String author, String header, Date publishDate) {
+        this.header = header;
+        this.numberOfAnswers = numberOfAnswers;
+        this.rating = rating;
+        this.questionAuthorId = questionAuthorId;
         this.author = author;
         this.publishDate = publishDate;
     }
@@ -70,5 +84,13 @@ public class ShortQuestion{
 
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
+    }
+
+    public int getQuestionAuthorId() {
+        return questionAuthorId;
+    }
+
+    public void setQuestionAuthorId(int questionAuthorId) {
+        this.questionAuthorId = questionAuthorId;
     }
 }

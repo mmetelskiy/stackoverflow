@@ -2,10 +2,12 @@ package by.bsu.kbrs;
 
  import by.bsu.kbrs.dao.fullQuestion.JdbcFullQuestionDao;
  import by.bsu.kbrs.dao.shortQuestion.JdbcShortQuestionDao;
+ import by.bsu.kbrs.json.FullQuestion;
  import by.bsu.kbrs.json.ShortQuestion;
  import org.springframework.context.ConfigurableApplicationContext;
  import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+ import java.sql.Date;
  import java.util.List;
 
          /**
@@ -20,5 +22,14 @@ public class Main {
 
          JdbcFullQuestionDao jdbcFullQuestionDao = (JdbcFullQuestionDao) context.getBean("jdbcFullQuestionDao");
          System.out.println(jdbcFullQuestionDao.getById(1).toString());
+
+         FullQuestion fullQuestion;
+         jdbcFullQuestionDao.insert(fullQuestion= new FullQuestion(0,0, 2, " ", "kdas klasd lk;a sdlas daksl; dkla;sk;dl aksl;kd l;askl d;kasl;d kals;kd la;skdl uai wuih qwhue q",
+                                    new Date(new java.util.Date().getTime())));
+         System.out.println("where added "+ fullQuestion.getQuestionId());
+
+         jdbcFullQuestionDao.remove(fullQuestion);
+         System.out.println("where deleted "+ fullQuestion.getQuestionId());
+
     }
 }

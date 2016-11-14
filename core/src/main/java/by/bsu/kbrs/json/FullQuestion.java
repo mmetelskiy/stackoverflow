@@ -9,9 +9,18 @@ public class FullQuestion extends ShortQuestion {
 
     private String questionText;
 
-    public FullQuestion(int questionId, int numberOfAnswers, int rating, String author, String questionText, Date publishDate) {
-        super(questionId, numberOfAnswers, rating, author, questionText.substring(0, Math.min(50, questionText.length())), publishDate);
+    public FullQuestion(int questionId, int numberOfAnswers, int rating, int questionAuthorId, String author, String questionText, Date publishDate) {
+        super(questionId, numberOfAnswers, rating, questionAuthorId, author, questionText.substring(0, Math.min(50, questionText.length())), publishDate);
         this.questionText = questionText;
+    }
+
+    public FullQuestion(int numberOfAnswers, int rating, int questionAuthorId, String author, String questionText, Date publishDate) {
+        super(numberOfAnswers, rating, questionAuthorId, author, questionText.substring(0, Math.min(50, questionText.length())), publishDate);
+        this.questionText = questionText;
+    }
+
+    public FullQuestion(){
+        super();
     }
 
     public String getQuestionText() {

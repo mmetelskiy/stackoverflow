@@ -14,6 +14,7 @@ public class FullQuestionMapper implements RowMapper {
         return new FullQuestion(resultSet.getInt("question_id"),
                 resultSet.getInt("num_answers"),
                 resultSet.getInt("question_rating"),
+                resultSet.getInt("question_author_id"),
                 resultSet.getString("user_name"),
                 resultSet.getString("question_text"),
                 resultSet.getDate("question_publish_date"));
