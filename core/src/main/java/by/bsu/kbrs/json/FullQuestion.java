@@ -7,7 +7,18 @@ import java.sql.Date;
  */
 public class FullQuestion extends ShortQuestion {
 
-    public FullQuestion(int questionId, int numberOfAnswers, int rating, String author, String header, Date publishDate) {
-        super(questionId, numberOfAnswers, rating, author, header, publishDate);
+    private String questionText;
+
+    public FullQuestion(int questionId, int numberOfAnswers, int rating, String author, String questionText, Date publishDate) {
+        super(questionId, numberOfAnswers, rating, author, questionText.substring(0, Math.min(50, questionText.length())), publishDate);
+        this.questionText = questionText;
+    }
+
+    public String getQuestionText() {
+        return questionText;
+    }
+
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
     }
 }

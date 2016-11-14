@@ -1,4 +1,4 @@
-package by.bsu.kbrs.dao.question;
+package by.bsu.kbrs.dao.shortQuestion;
 
 import by.bsu.kbrs.dao.GenericDao;
 import by.bsu.kbrs.json.ShortQuestion;

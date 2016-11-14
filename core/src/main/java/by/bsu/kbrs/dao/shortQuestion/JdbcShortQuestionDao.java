@@ -1,6 +1,5 @@
-package by.bsu.kbrs.dao.question;
+package by.bsu.kbrs.dao.shortQuestion;
 
-import by.bsu.kbrs.json.Question;
 import by.bsu.kbrs.json.ShortQuestion;
 import by.bsu.kbrs.tools.ShortQuestionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
