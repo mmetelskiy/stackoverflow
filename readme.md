@@ -49,21 +49,29 @@ Headers: Authorization: Basic fj12D4ksaUn6Jknk7l
 # nginx config
     http {
         server {
-            listen 8080;
+        listen 8080;
 
-            root /media/Data/Универ/КБ/repository/web;
-            index index.html;
+        root /media/Data/Универ/КБ/repository/web;
+        index index.html;
 
-            location / {
-                try_files $uri /index.html;
-            }
-
-            location = /index.html {
-                expires 30s;
-            }
-
-            location /rest-services {
-                proxy_pass http://localhost:8082/web;
-            }
+        location / {
+            try_files $uri /index.html;
         }
+
+        location = /index.html {
+            expires 30s;
+        }
+
+        location ~ .*/main.css {
+            try_files $uri /style/main.css;
+        }
+
+        location ~ .*/app.js {
+            try_files $uri /js/app.js;
+        }
+
+        location /rest-services {
+            proxy_pass http://192.168.100.8:8080/web;
+        }
+    }
     }
