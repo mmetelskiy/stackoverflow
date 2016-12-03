@@ -1,7 +1,7 @@
 package by.bsu.kbrs.dao.fullQuestion;
 
 import by.bsu.kbrs.json.FullQuestion;
-import by.bsu.kbrs.tools.FullQuestionMapper;
+import by.bsu.kbrs.tools.FullQuestionSetExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -18,7 +18,21 @@ public class JdbcFullQuestionDao implements FullQuestionDao {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    private static String SQL_SELECT_FULLQUESTION_BY_ID = "SELECT * FROM questions INNER JOIN users ON question_author_id = user_id WHERE question_id=:question_id";
+    private static String SQL_SELECT_FULLQUESTION_BY_ID = "SELECT \n" +
+            "    questions.*,\n" +
+            "    answers.*,\n" +
+            "    users.user_name,\n" +
+            "    u.user_name\n" +
+            "FROM\n" +
+            "    questions\n" +
+            "        INNER JOIN\n" +
+            "    users ON questions.question_author_id = users.user_id\n" +
+            "        INNER JOIN\n" +
+            "    answers ON questions.question_id = answers.question_id\n" +
+            "        INNER JOIN\n" +
+            "    users u ON answers.author_id = u.user_id\n" +
+            "WHERE\n" +
+            "    questions.question_id =:question_id";
     private static String SQL_DELETE_QUESTION_BY_ID = "DELETE FROM questions WHERE question_id = :question_id";
     private static String SQL_INSERT_QUESTION = "INSERT INTO questions (question_text, num_answers, question_rating, question_author_id, question_publish_date) " +
                                                 "VALUES (:question_text, :num_answers, :question_rating, :question_author_id, :question_publish_date)";
@@ -41,7 +55,7 @@ public class JdbcFullQuestionDao implements FullQuestionDao {
     public FullQuestion getById(Integer id) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("question_id", id);
-        return (FullQuestion) ((List)namedParameterJdbcTemplate.query(SQL_SELECT_FULLQUESTION_BY_ID, params, new FullQuestionMapper())).get(0);
+        return (FullQuestion) ((List)namedParameterJdbcTemplate.query(SQL_SELECT_FULLQUESTION_BY_ID, params, new FullQuestionSetExtractor())).get(0);
     }
 
     public void remove(FullQuestion fullQuestion) {

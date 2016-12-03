@@ -15,7 +15,7 @@ package by.bsu.kbrs;
   + */
 public class Main {
      public static void main(String[] args){
-         ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+         /*ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
          JdbcShortQuestionDao jdbcShortQuestionDao = (JdbcShortQuestionDao) context.getBean("jdbcShortQuestionDao");
          List<ShortQuestion> shortQuestionList = jdbcShortQuestionDao.getList();
          System.out.println(shortQuestionList.toString());
@@ -32,7 +32,7 @@ public class Main {
          System.out.println(fullQuestion.getQuestionId());
 
          jdbcFullQuestionDao.remove(fullQuestion);
-         System.out.println("where deleted "+ fullQuestion.getQuestionId());
+         System.out.println("where deleted "+ fullQuestion.getQuestionId());*/
 
     }
 }

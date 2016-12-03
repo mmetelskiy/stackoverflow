@@ -16,7 +16,18 @@ public class JdbcShortQuestionDao implements ShortQuestionDao {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    private static String SQL_SELECT_LIST_SHORTQUESTIONS = "SELECT * FROM questions INNER JOIN users ON question_author_id = user_id";
+    private static String SQL_SELECT_LIST_SHORTQUESTIONS = "SELECT \n" +
+            "    questions.*,\n" +
+            "    users.user_id,\n" +
+            "    users.user_name,\n" +
+            "    COUNT(answers.answer_id) AS number_answers\n" +
+            "FROM\n" +
+            "    questions\n" +
+            "        INNER JOIN\n" +
+            "    users ON question_author_id = user_id\n" +
+            "        INNER JOIN\n" +
+            "    answers ON questions.question_id = answers.question_id\n" +
+            "GROUP BY answers.question_id;";
 
     public void insert(ShortQuestion shortQuestion) {
 

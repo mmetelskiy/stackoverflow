@@ -13,7 +13,7 @@ public class ShortQuestionMapper implements RowMapper {
     public Object mapRow(ResultSet resultSet, int i) throws SQLException {
         String questionText = resultSet.getString("question_text");
         return new ShortQuestion(resultSet.getInt("question_id"),
-                                 resultSet.getInt("num_answers"),
+                                 resultSet.getInt("number_answers"),
                                  resultSet.getInt("question_rating"),
                                  resultSet.getInt("question_author_id"),
                                  resultSet.getString("user_name"),
