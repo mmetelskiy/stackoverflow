@@ -26,6 +26,10 @@ response: `{id:123}`
 #### 404 (application/json)
 #### 500 (application/json)
 
+### GET /web/access
+Headers: Authorization: Basic fj12D4ksaUn6Jknk7l
+#### 200 401 403 500
+
 ### PUT /web/rating/up
 #### 200 (application/json)
 #### 401 (application/json)
