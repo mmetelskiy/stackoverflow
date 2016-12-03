@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,16 +22,18 @@ public class JdbcFullQuestionDao implements FullQuestionDao {
     private static String SQL_DELETE_QUESTION_BY_ID = "DELETE FROM questions WHERE question_id = :question_id";
     private static String SQL_INSERT_QUESTION = "INSERT INTO questions (question_text, num_answers, question_rating, question_author_id, question_publish_date) " +
                                                 "VALUES (:question_text, :num_answers, :question_rating, :question_author_id, :question_publish_date)";
+    private static String SQL_UPDATE_RATING_UP;
+    private static String SQL_UPDATE_RATING_DOWN;
 
 
     public void insert(FullQuestion fullQuestion) {
         Map<String, Object> params = new HashMap<String, Object>();
         GeneratedKeyHolder holder = new GeneratedKeyHolder();
         params.put("question_text", fullQuestion.getQuestionText());
-        params.put("num_answers", fullQuestion.getNumberOfAnswers());
-        params.put("question_rating", fullQuestion.getRating());
+        params.put("num_answers", 0);
+        params.put("question_rating", 0);
         params.put("question_author_id", fullQuestion.getQuestionAuthorId());
-        params.put("question_publish_date", fullQuestion.getPublishDate());
+        params.put("question_publish_date", new Date(new java.util.Date().getTime()));
         namedParameterJdbcTemplate.update(SQL_INSERT_QUESTION, new MapSqlParameterSource(params), holder);
         fullQuestion.setQuestionId(holder.getKey().intValue());
     }
@@ -53,6 +56,14 @@ public class JdbcFullQuestionDao implements FullQuestionDao {
     }
 
     public void update(FullQuestion fullQuestion) {
+
+    }
+
+    public void updateRatingUp(int questionId){
+
+    }
+
+    public void updateRatingDown(int questionId){
 
     }
 }

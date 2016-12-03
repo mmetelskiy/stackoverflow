@@ -6,18 +6,19 @@ import by.bsu.kbrs.json.FullQuestion;
 import by.bsu.kbrs.json.ShortQuestion;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+import java.sql.Date;
 import java.util.List;
 
 /**
  * Created by wladek on 10/25/16.
  */
-@RestController(value = "/list")
+@RestController
 public class ListQuestionsController {
 
     @Autowired
@@ -26,19 +27,35 @@ public class ListQuestionsController {
     private JdbcFullQuestionDao jdbcFullQuestionDao;
 
 
-    @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody String getListQuestions() throws IOException {
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public @ResponseBody String getListQuestions(HttpServletResponse response) throws IOException {
         List<ShortQuestion> shortQuestionList = jdbcShortQuestionDao.getList();
         Gson gson = new Gson();
         String json = gson.toJson(shortQuestionList);
+        response.setContentType("application/json");
         return json;
     }
 
-    @RequestMapping(value = "/{questionId}", method = RequestMethod.GET)
-    public @ResponseBody String getQuestion(Integer questionId){
-        FullQuestion fullQuestion = jdbcFullQuestionDao.getById(questionId);
+    @RequestMapping( value="/list", method = RequestMethod.POST)
+    public @ResponseBody String createFullQuestion(@RequestParam String questionText,  HttpServletRequest request){
+        FullQuestion fullQuestion = new FullQuestion(0,0,0,1," ", questionText, new Date(11));
+        jdbcFullQuestionDao.insert(fullQuestion);
+        return fullQuestion.getQuestionId() + "";
+    }
+
+    @RequestMapping(value = "/list/{questionId}", method = RequestMethod.GET)
+    public @ResponseBody String getQuestion(@PathVariable String questionId, HttpServletResponse response){
+        FullQuestion fullQuestion = jdbcFullQuestionDao.getById(Integer.parseInt(questionId));
         Gson gson = new Gson();
         String json = gson.toJson(fullQuestion);
+        response.setContentType("application/json");
         return json;
+    }
+
+    @RequestMapping(value = "/{questionId}", method = RequestMethod.DELETE)
+    public void deleteQuestionById(@PathVariable String questionId){
+        FullQuestion fullQuestion = new FullQuestion();
+        fullQuestion.setQuestionId(Integer.parseInt(questionId));
+        jdbcFullQuestionDao.remove(fullQuestion);
     }
 }

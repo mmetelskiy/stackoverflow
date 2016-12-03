@@ -28,6 +28,9 @@ public class Main {
                                     new Date(new java.util.Date().getTime())));
          System.out.println("where added "+ fullQuestion.getQuestionId());
 
+         fullQuestion = jdbcFullQuestionDao.getById(fullQuestion.getQuestionId());
+         System.out.println(fullQuestion.getQuestionId());
+
          jdbcFullQuestionDao.remove(fullQuestion);
          System.out.println("where deleted "+ fullQuestion.getQuestionId());
 
