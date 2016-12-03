@@ -38,8 +38,8 @@ var ajax = function (options, callback) {
         var responseBody = xhr.responseText;
         var contentType = xhr.getResponseHeader('Content-Type');
 
-        if (contentType === 'application/json') {
-            responseBody = JSON.stringify(responseBody);
+        if (contentType.indexOf('application/json') !== -1) {
+            responseBody = JSON.parse(responseBody);
         }
 
         callback({
@@ -105,28 +105,34 @@ var showQuestions = (function () {
 
     var stubList = [
         {
-            id: 1,
+            questionsId: 1,
             header: 'underscore templates',
             author: 'misha',
-            time: '13.10.2015',
-            answers: 5
+            publishDate: '13.10.2015',
+            numberOfAnswers: 5,
+            rating: 0,
+            questionAuthorId: 3
         },
         {
-            id: 2,
+            questionsId: 2,
             header: 'bash array slice',
             author: 'misha',
-            time: '21.09.2014',
-            answers: 6
+            publishDate: '21.09.2014',
+            numberOfAnswers: 6,
+            rating: 0,
+            questionAuthorId: 3
         },
         {
-            id: 3,
+            questionsId: 3,
             header: 'java stream to collection',
             author: 'misha',
-            time: '21.09.2014',
-            answers: 255
+            publishDate: '21.09.2014',
+            numberOfAnswers: 255,
+            rating: 0,
+            questionAuthorId: 3
         },
         {
-            id: 4,
+            questionsId: 4,
             header: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod' +
                 'tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,' +
                 'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo' +
@@ -134,8 +140,10 @@ var showQuestions = (function () {
                 'cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
                 'proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             author: 'misha',
-            time: '21.09.2014',
-            answers: 1234
+            publishDate: '21.09.2014',
+            numberOfAnswers: 1234,
+            rating: 0,
+            questionAuthorId: 3
         }
     ];
 
@@ -193,6 +201,26 @@ var showQuestion = (function () {
     var basePath = '/rest-services/list';
     var questionDiv = document.getElementById('question');
 
+    var stubAnswer = {
+        questionId: 'questionId',
+        questionText: 'stubQuestionText',
+        numberOfAnswers: '-1',
+        rating: 'infinity',
+        questionAuthorId: '-1',
+        author: 'stubAuthor',
+        header: 'stubHeader',
+        publishDate: 'The Day That Never Comes',
+        answerList: [
+            {
+                answerId: '-1',
+                answerText: 'stubAnswerText',
+                authorName: 'stubAuthor',
+                authorId: 'stubAuthorId',
+                publishDate: 'Your mum\'s birthday'
+            }
+        ]
+    };
+
     return function (questionId) {
         var options = Object.assign({
             path: basePath + '/' + encodeURI(questionId)
@@ -213,6 +241,19 @@ var showQuestion = (function () {
             switchView(questionDiv);
         };
 
+        /*
+            {
+                questionText: '',
+                questionId: '',
+                numberOfAnswers: '',
+                rating: '',
+                questionAuthorId: '',
+                author: '',
+                header: '',
+                publishDate
+            }
+        */
+
         ajax(options, function (response) {
             switch (response.status) {
                 case 200:
@@ -222,9 +263,9 @@ var showQuestion = (function () {
                     showNotFound();
                     break;
                 case 502:
-                    successHandler({
-                        id: questionId
-                    });
+                    successHandler(Object.assign({}, stubAnswer, {
+                        questionId: questionId
+                    }));
                     break;
             };
         });
@@ -245,7 +286,7 @@ var setCurrentState = function () {
     } else if (path === '/login') {
         showLogin();
     } else if (path.indexOf('/questions/') === 0) {
-        showQuestion();
+        showQuestion(path.substring(11));
     } else {
         showNotFound();
     }

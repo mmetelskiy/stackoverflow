@@ -27,19 +27,41 @@
     <script id="questions-template" type="text/template">
         <ul>
             <% _.each(questions, function (question) { %>
-                <li id="<%= question.id %>" class="question">
-                    <div class="answers-num"><%= question.answers %></div>
-                    <h4><%= question.header %></h4>
+                <li id="<%= question.questionId %>" class="question">
+                    <div class="answers-num"><%= question.numberOfAnswers %></div>
+                    <h4 class="link"><%= question.header %></h4>
                     <div class="right-left">
                         <span class="question-author"><%= question.author %></span>
-                        <time><%= question.time %></time>
+                        <time><%= question.publishDate %></time>
                     </div>
                 </li>
             <% }) %>
         </ul>
     </script>
     <script id="question-template" type="text/template">
-        <b>question <%= question.id %></b>
+        <section class="question" id="<%= question.questionId %>">
+            <div class="answers-num"><%= question.answerList.length %></div>
+            <h4><%= question.questionText %></h4>
+            <div class="right-left">
+                <span class="question-author"><%= question.author %></span>
+                <time><%= question.publishDate %></time>
+            </div>
+            <div class="answers">
+                <ul>
+                    <% _.each(question.answerList, function (answer) { %>
+                        <li class="answer" id="<%= answer.answerId %>">
+                            <div class="answer-text">
+                                <%= answer.answerText %>
+                            </div>
+                            <div class="right-left">
+                                <span class="answer-author"><%= answer.authorName %></span>
+                                <time><%= answer.publishDate %></time>
+                            </div>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </section>
     </script>
     <script type="text/javascript" src="js/app.js"></script>
 </body>

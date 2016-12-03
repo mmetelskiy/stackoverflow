@@ -56,7 +56,8 @@ footer {
         display: block;
     }
 
-.question {
+.question ,
+.answer {
     list-style: none;
     display: block;
     position: relative;
@@ -83,7 +84,7 @@ footer {
         padding-left: 10px;
         font-size: 20px;
     }
-    .question h4:hover {
+    .question h4.link:hover {
         text-decoration: underline;
         color: #00caef;
         cursor: pointer;
@@ -104,3 +105,12 @@ footer {
     right: 0;
     background: #ccc;
 }
+
+.answers {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+/* .answer {
+    list-style: none;
+} */
