@@ -9,7 +9,6 @@ public class Question {
     private int questionId;
 
     private int rating;
-    private int questionAuthorId;
     private String author;
     private String header;
 
@@ -19,15 +18,14 @@ public class Question {
         super();
     }
 
-    public Question(int questionId, int rating, int questionAuthorId, String author, String header, Date publishDate) {
-        this(rating, questionAuthorId, author, header, publishDate);
+    public Question(int questionId, int rating, String author, String header, Date publishDate) {
+        this(rating, author, header, publishDate);
         this.questionId = questionId;
     }
 
-    public Question(int rating, int questionAuthorId, String author, String header, Date publishDate) {
+    public Question(int rating, String author, String header, Date publishDate) {
         this.header = header;
         this.rating = rating;
-        this.questionAuthorId = questionAuthorId;
         this.author = author;
         this.publishDate = publishDate;
     }
@@ -72,11 +70,4 @@ public class Question {
         this.publishDate = publishDate;
     }
 
-    public int getQuestionAuthorId() {
-        return questionAuthorId;
-    }
-
-    public void setQuestionAuthorId(int questionAuthorId) {
-        this.questionAuthorId = questionAuthorId;
-    }
 }

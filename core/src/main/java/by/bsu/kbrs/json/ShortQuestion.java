@@ -11,13 +11,13 @@ public class ShortQuestion extends Question{
         super();
     }
 
-    public ShortQuestion(int questionId, int numberOfAnswers, int rating, int questionAuthorId, String author, String header, Date publishDate) {
-        super(questionId, rating,questionAuthorId,author,header,publishDate);
+    public ShortQuestion(int questionId, int numberOfAnswers, int rating, String author, String header, Date publishDate) {
+        super(questionId, rating, author,header,publishDate);
         this.numberOfAnswers = numberOfAnswers;
     }
 
-    public ShortQuestion(int numberOfAnswers, int rating, int questionAuthorId, String author, String header, Date publishDate) {
-        super(rating, questionAuthorId, author, header, publishDate);
+    public ShortQuestion(int numberOfAnswers, int rating, String author, String header, Date publishDate) {
+        super(rating, author, header, publishDate);
         this.numberOfAnswers = numberOfAnswers;
 
     }

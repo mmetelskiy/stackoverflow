@@ -8,15 +8,13 @@ import java.sql.Date;
 public class Answer {
     private int questionId;
     private int answerId;
-    private int authorId;
     private String authorName;
     private String answerText;
     private Date publishDate;
 
-    public Answer(int answerId, int questionId, int authorId, String authorName, String answerText, Date publishDate){
+    public Answer(int answerId, int questionId, String authorName, String answerText, Date publishDate){
         this.answerId = answerId;
         this.questionId = questionId;
-        this.authorId = authorId;
         this.authorName = authorName;
         this.answerText = answerText;
         this.publishDate = publishDate;
@@ -46,13 +44,6 @@ public class Answer {
         this.authorName = authorName;
     }
 
-    public int getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
-    }
 
     public String getAnswerText() {
         return answerText;

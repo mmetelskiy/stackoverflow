@@ -40,7 +40,7 @@ public class ListQuestionsController {
 
     @RequestMapping( value="/list", method = RequestMethod.POST)
     public @ResponseBody String createFullQuestion(@RequestParam String questionText,  HttpServletRequest request){
-        FullQuestion fullQuestion = new FullQuestion(0,0,1," ", questionText, new Date(11), new ArrayList<Answer>());
+        FullQuestion fullQuestion = new FullQuestion("Misha" ,questionText);
         jdbcFullQuestionDao.insert(fullQuestion);
         return fullQuestion.getQuestionId() + "";
     }

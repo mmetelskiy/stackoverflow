@@ -28,7 +28,6 @@ public class FullQuestionSetExtractor implements ResultSetExtractor<List<FullQue
                 String questionText = resultSet.getString("question_text");
                 fullQuestion = new FullQuestion(questionId,
                         resultSet.getInt("question_rating"),
-                        resultSet.getInt("question_author_id"),
                         resultSet.getString("users.user_name"),
                         questionText.substring(0, Math.min(50, questionText.length())),
                         resultSet.getDate("question_publish_date"),
@@ -37,7 +36,6 @@ public class FullQuestionSetExtractor implements ResultSetExtractor<List<FullQue
             }
             Answer answer = new Answer(resultSet.getInt("answers.answer_id"),
                     resultSet.getInt("answers.question_id"),
-                    resultSet.getInt("answers.author_id"),
                     resultSet.getString("u.user_name"),
                     resultSet.getString("answers.answer_text"),
                     resultSet.getDate("answers.answer_publish_date")

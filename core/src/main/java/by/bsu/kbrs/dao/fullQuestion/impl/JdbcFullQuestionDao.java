@@ -36,7 +36,7 @@ public class JdbcFullQuestionDao implements FullQuestionDao {
             "    questions.question_id =:question_id";
     private static String SQL_DELETE_QUESTION_BY_ID = "DELETE FROM questions WHERE question_id = :question_id";
     private static String SQL_INSERT_QUESTION = "INSERT INTO questions (question_text, num_answers, question_rating, question_author_id, question_publish_date) " +
-                                                "VALUES (:question_text, :num_answers, :question_rating, :question_author_id, :question_publish_date)";
+                                                "VALUES (:question_text, :num_answers, :question_rating, (SELECT user_id from users WHERE user_name=:question_author_name LIMIT 1), :question_publish_date)";
     private static String SQL_UPDATE_RATING_UP;
     private static String SQL_UPDATE_RATING_DOWN;
 
@@ -44,11 +44,12 @@ public class JdbcFullQuestionDao implements FullQuestionDao {
     public void insert(FullQuestion fullQuestion) {
         Map<String, Object> params = new HashMap<String, Object>();
         GeneratedKeyHolder holder = new GeneratedKeyHolder();
+        fullQuestion.setPublishDate(new Date(new java.util.Date().getTime()));
         params.put("question_text", fullQuestion.getQuestionText());
         params.put("num_answers", 0);
         params.put("question_rating", 0);
-        params.put("question_author_id", fullQuestion.getQuestionAuthorId());
-        params.put("question_publish_date", new Date(new java.util.Date().getTime()));
+        params.put("question_author_name", fullQuestion.getAuthor());
+        params.put("question_publish_date", fullQuestion.getPublishDate());
         namedParameterJdbcTemplate.update(SQL_INSERT_QUESTION, new MapSqlParameterSource(params), holder);
         fullQuestion.setQuestionId(holder.getKey().intValue());
     }
