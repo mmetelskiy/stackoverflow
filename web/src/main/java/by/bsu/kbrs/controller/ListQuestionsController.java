@@ -1,7 +1,7 @@
 package by.bsu.kbrs.controller;
 
-import by.bsu.kbrs.dao.fullQuestion.JdbcFullQuestionDao;
-import by.bsu.kbrs.dao.shortQuestion.JdbcShortQuestionDao;
+import by.bsu.kbrs.dao.fullQuestion.impl.JdbcFullQuestionDao;
+import by.bsu.kbrs.dao.shortQuestion.impl.JdbcShortQuestionDao;
 import by.bsu.kbrs.json.Answer;
 import by.bsu.kbrs.json.FullQuestion;
 import by.bsu.kbrs.json.ShortQuestion;

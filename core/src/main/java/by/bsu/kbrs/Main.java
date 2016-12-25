@@ -1,16 +1,6 @@
 package by.bsu.kbrs;
 
- import by.bsu.kbrs.dao.fullQuestion.JdbcFullQuestionDao;
- import by.bsu.kbrs.dao.shortQuestion.JdbcShortQuestionDao;
- import by.bsu.kbrs.json.FullQuestion;
- import by.bsu.kbrs.json.ShortQuestion;
- import org.springframework.context.ConfigurableApplicationContext;
- import org.springframework.context.support.ClassPathXmlApplicationContext;
-
- import java.sql.Date;
- import java.util.List;
-
-         /**
+/**
   + * Created by wladek on 10/26/16.
   + */
 public class Main {

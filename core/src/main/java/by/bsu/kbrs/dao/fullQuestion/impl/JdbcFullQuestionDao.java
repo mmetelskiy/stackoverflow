@@ -1,5 +1,6 @@
-package by.bsu.kbrs.dao.fullQuestion;
+package by.bsu.kbrs.dao.fullQuestion.impl;
 
+import by.bsu.kbrs.dao.fullQuestion.FullQuestionDao;
 import by.bsu.kbrs.json.FullQuestion;
 import by.bsu.kbrs.tools.FullQuestionSetExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
