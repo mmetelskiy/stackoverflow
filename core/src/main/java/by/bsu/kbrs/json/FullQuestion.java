@@ -11,21 +11,20 @@ public class FullQuestion extends Question {
     private String questionText;
     private List<Answer> answerList;
 
-    public FullQuestion(int questionId, int rating, String author, String questionText, Date publishDate, List<Answer> answerList) {
-        super(questionId, rating, author, questionText.substring(0, Math.min(50, questionText.length())), publishDate);
+    public FullQuestion(int questionId, String author, String questionText, Date publishDate, List<Answer> answerList) {
+        super(questionId, author, questionText.substring(0, Math.min(50, questionText.length())), publishDate);
         this.questionText = questionText;
         this.answerList = answerList;
     }
 
-    public FullQuestion( int rating, String author, String questionText, Date publishDate, List<Answer> answerList) {
-        super(rating, author, questionText.substring(0, Math.min(50, questionText.length())), publishDate);
+    public FullQuestion(String author, String questionText, Date publishDate, List<Answer> answerList) {
+        super( author, questionText.substring(0, Math.min(50, questionText.length())), publishDate);
         this.questionText = questionText;
         this.answerList = answerList;
     }
 
     public FullQuestion(String author, String questionText) {
         this.questionText = questionText;
-        this.setRating(0);
         this.setAuthor(author);
     }
 

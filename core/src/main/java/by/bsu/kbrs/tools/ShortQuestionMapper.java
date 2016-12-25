@@ -14,7 +14,6 @@ public class ShortQuestionMapper implements RowMapper {
         String questionText = resultSet.getString("question_text");
         return new ShortQuestion(resultSet.getInt("question_id"),
                                  resultSet.getInt("number_answers"),
-                                 resultSet.getInt("question_rating"),
                                  resultSet.getString("user_name"),
                                  questionText.substring(0, Math.min(50, questionText.length())),
                                  resultSet.getDate("question_publish_date"));

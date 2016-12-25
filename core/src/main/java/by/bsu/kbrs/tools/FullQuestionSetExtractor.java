@@ -27,7 +27,6 @@ public class FullQuestionSetExtractor implements ResultSetExtractor<List<FullQue
             if(fullQuestion == null){
                 String questionText = resultSet.getString("question_text");
                 fullQuestion = new FullQuestion(questionId,
-                        resultSet.getInt("question_rating"),
                         resultSet.getString("users.user_name"),
                         questionText.substring(0, Math.min(50, questionText.length())),
                         resultSet.getDate("question_publish_date"),

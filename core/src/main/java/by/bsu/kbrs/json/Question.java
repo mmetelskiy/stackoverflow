@@ -8,7 +8,6 @@ import java.sql.Date;
 public class Question {
     private int questionId;
 
-    private int rating;
     private String author;
     private String header;
 
@@ -18,14 +17,13 @@ public class Question {
         super();
     }
 
-    public Question(int questionId, int rating, String author, String header, Date publishDate) {
-        this(rating, author, header, publishDate);
+    public Question(int questionId, String author, String header, Date publishDate) {
+        this( author, header, publishDate);
         this.questionId = questionId;
     }
 
-    public Question(int rating, String author, String header, Date publishDate) {
+    public Question( String author, String header, Date publishDate) {
         this.header = header;
-        this.rating = rating;
         this.author = author;
         this.publishDate = publishDate;
     }
@@ -44,14 +42,6 @@ public class Question {
 
     public void setQuestionId(int questionId) {
         this.questionId = questionId;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
     }
 
     public String getAuthor() {

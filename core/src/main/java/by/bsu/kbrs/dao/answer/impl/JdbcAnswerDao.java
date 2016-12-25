@@ -45,7 +45,6 @@ public class JdbcAnswerDao implements AnswerDao {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("answer_id", answer.getAnswerId());
         namedParameterJdbcTemplate.update(SQL_DELETE_ANSWER_BY_ID, params);
-        System.out.println("Success");
     }
 
     public List<Answer> getList() {
