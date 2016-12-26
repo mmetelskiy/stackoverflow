@@ -21,14 +21,14 @@ public class JdbcShortQuestionDao implements ShortQuestionDao {
             "    questions.*,\n" +
             "    users.user_id,\n" +
             "    users.user_name,\n" +
-            "    COUNT(answers.answer_id) AS number_answers\n" +
+            "    IFNULL(COUNT(answers.answer_id), 0) AS number_answers\n" +
             "FROM\n" +
             "    questions\n" +
-            "        INNER JOIN\n" +
+            "        LEFT JOIN\n" +
             "    users ON question_author_id = user_id\n" +
-            "        INNER JOIN\n" +
+            "        LEFT JOIN\n" +
             "    answers ON questions.question_id = answers.question_id\n" +
-            "GROUP BY answers.question_id;";
+            "GROUP BY questions.question_id;";
 
     public void insert(ShortQuestion shortQuestion) {
 

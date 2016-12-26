@@ -2,7 +2,6 @@ package by.bsu.kbrs.controller;
 
 import by.bsu.kbrs.dao.fullQuestion.impl.JdbcFullQuestionDao;
 import by.bsu.kbrs.dao.shortQuestion.impl.JdbcShortQuestionDao;
-import by.bsu.kbrs.json.Answer;
 import by.bsu.kbrs.json.FullQuestion;
 import by.bsu.kbrs.json.ShortQuestion;
 import com.google.gson.Gson;
@@ -13,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,10 +36,10 @@ public class ListQuestionsController {
     }
 
     @RequestMapping( value="/list", method = RequestMethod.POST)
-    public @ResponseBody String createFullQuestion(@RequestParam String questionText,  HttpServletRequest request){
-        FullQuestion fullQuestion = new FullQuestion("Misha" ,questionText);
+    public void createFullQuestion(@RequestParam String questionText, HttpServletRequest request, HttpServletResponse response){
+        FullQuestion fullQuestion = new FullQuestion("Misha", questionText);
         jdbcFullQuestionDao.insert(fullQuestion);
-        return fullQuestion.getQuestionId() + "";
+        response.setStatus(201);
     }
 
     @RequestMapping(value = "/list/{questionId}", method = RequestMethod.GET)
@@ -54,10 +51,11 @@ public class ListQuestionsController {
         return json;
     }
 
-    @RequestMapping(value = "/{questionId}", method = RequestMethod.DELETE)
-    public void deleteQuestionById(@PathVariable String questionId){
+    @RequestMapping(value = "list/{questionId}", method = RequestMethod.DELETE)
+    public void deleteQuestionById(@PathVariable String questionId, HttpServletResponse response){
         FullQuestion fullQuestion = new FullQuestion();
         fullQuestion.setQuestionId(Integer.parseInt(questionId));
         jdbcFullQuestionDao.remove(fullQuestion);
+        response.setStatus(200);
     }
 }

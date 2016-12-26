@@ -22,7 +22,8 @@ public class JdbcAnswerDao implements AnswerDao {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     private static final String SQL_INSERT_ANSWER = "INSERT INTO answers (question_id, author_id, answer_text, answer_publish_date) " +
-            "VALUES (:question_id, (SELECT user_id FROM users WHERE user_id=:author_name LIMIT 1), :answer_text, :answer_publish_date)";
+            "VALUES (:question_id, (SELECT user_id FROM users WHERE user_name=:author_name LIMIT 1), :answer_text, :answer_publish_date)";
+
     private static String SQL_DELETE_ANSWER_BY_ID = "DELETE FROM answers WHERE answer_id = :answer_id";
 
     public void insert(Answer answer) {

@@ -12,12 +12,19 @@ public class Answer {
     private String answerText;
     private Date publishDate;
 
+    public Answer(){
+
+    }
+
     public Answer(int answerId, int questionId, String authorName, String answerText, Date publishDate){
-        this.answerId = answerId;
+        this(questionId, authorName, answerText);
+        this.setAnswerId(answerId);
+        this.setPublishDate(publishDate);
+    }
+    public Answer(int questionId, String authorName, String answerText){
         this.questionId = questionId;
         this.authorName = authorName;
         this.answerText = answerText;
-        this.publishDate = publishDate;
     }
 
     public int getQuestionId() {

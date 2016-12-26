@@ -33,13 +33,16 @@ public class FullQuestionSetExtractor implements ResultSetExtractor<List<FullQue
                         new ArrayList<Answer>());
                 map.put(questionId, fullQuestion);
             }
-            Answer answer = new Answer(resultSet.getInt("answers.answer_id"),
-                    resultSet.getInt("answers.question_id"),
-                    resultSet.getString("u.user_name"),
-                    resultSet.getString("answers.answer_text"),
-                    resultSet.getDate("answers.answer_publish_date")
-                    );
-            fullQuestion.getAnswerList().add(answer);
+            int answerId = resultSet.getInt("answers.answer_id");
+            if(answerId > 0) {
+                Answer answer = new Answer(answerId,
+                        resultSet.getInt("answers.question_id"),
+                        resultSet.getString("u.user_name"),
+                        resultSet.getString("answers.answer_text"),
+                        resultSet.getDate("answers.answer_publish_date")
+                );
+                fullQuestion.getAnswerList().add(answer);
+            }
         }
         return new ArrayList<FullQuestion>(map.values());
     }

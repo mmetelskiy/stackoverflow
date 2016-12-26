@@ -47,4 +47,8 @@ public class FullQuestion extends Question {
     public void setAnswerList(List<Answer> answerList) {
         this.answerList = answerList;
     }
+
+    public int getNumAnswers(){
+        return  answerList.size();
+    }
 }
