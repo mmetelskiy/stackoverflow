@@ -33,5 +33,12 @@ public class Main {
          jdbcFullQuestionDao.remove(fullQuestion);
          System.out.println("where deleted "+ fullQuestion.getQuestionId());
 
+
+
+
+         System.out.println("lalka1salt1".hashCode());
+         System.out.println("lalka2salt2".hashCode());
+         System.out.println("lalka3salt3".hashCode());
+         System.out.println("lalka4salt4".hashCode());
     }
 }

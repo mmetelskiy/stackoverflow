@@ -12,5 +12,6 @@
      http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <context:component-scan base-package="by.bsu.kbrs.controller" />
+    <mvc:annotation-driven />
 
 </beans>
