@@ -1,4 +1,4 @@
-package by.bsu.kbrs.json;
+package by.bsu.kbrs.entity;
 
 /**
  * Created by wladek on 12/27/16.

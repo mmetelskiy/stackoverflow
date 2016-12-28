@@ -1,7 +1,6 @@
 package by.bsu.kbrs.tools;
 
-import by.bsu.kbrs.json.ShortQuestion;
-import by.bsu.kbrs.json.User;
+import by.bsu.kbrs.entity.User;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

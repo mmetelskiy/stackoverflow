@@ -13,10 +13,10 @@
 
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property username="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property username="url" value="jdbc:mysql://localhost:3306/kbrs"/>
-        <property username="username" value="root"/>
-        <property username="password" value="05051968"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/kbrs"/>
+        <property name="username" value="root"/>
+        <property name="password" value="05051968"/>
     </bean>
     <bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate" id="namedParameterJdbcTemplate">
         <constructor-arg type="javax.sql.DataSource" ref="dataSource"/>

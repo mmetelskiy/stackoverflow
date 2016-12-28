@@ -11,7 +11,7 @@
   </modules>
   <packaging>pom</packaging>
 
-  <username>kbrs</username>
+  <name>kbrs</name>
   <url>http://maven.apache.org</url>
 
   <properties>

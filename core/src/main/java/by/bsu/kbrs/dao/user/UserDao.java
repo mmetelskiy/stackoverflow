@@ -1,17 +1,13 @@
 package by.bsu.kbrs.dao.user;
 
-import by.bsu.kbrs.json.User;
+import by.bsu.kbrs.entity.User;
 import by.bsu.kbrs.json.UserSimple;
-import by.bsu.kbrs.tools.ShortQuestionMapper;
 import by.bsu.kbrs.tools.UserMapper;
 import by.bsu.kbrs.tools.UserSimpleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

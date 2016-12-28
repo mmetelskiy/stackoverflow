@@ -1,6 +1,5 @@
 package by.bsu.kbrs.tools;
 
-import by.bsu.kbrs.json.User;
 import by.bsu.kbrs.json.UserSimple;
 import org.springframework.jdbc.core.RowMapper;
 
